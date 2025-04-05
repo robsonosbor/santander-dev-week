@@ -1,169 +1,77 @@
-# 📌 Desafio Final - Santander Dev Week 2023
+# Projeto Santander DEV WEEK
 
-Este projeto foi desenvolvido como desafio final da **Santander Dev Week 2023**, com o objetivo de aplicar os conhecimentos adquiridos durante o evento.
-
-A proposta é criar uma **API RESTful** utilizando **Java com Spring Boot**, simulando um sistema de **gerenciamento de tarefas** para usuários.
-
----
-
-## 🚀 Tecnologias Utilizadas
-
-- ✅ Java 17
-- ✅ Spring Boot 3.1.4
-- ✅ Spring Data JPA
-- ✅ Spring Web
-- ✅ PostgreSQL Driver
-- ✅ H2 Database (ambiente de desenvolvimento/testes)
-- ✅ Swagger/OpenAPI - `springdoc-openapi-starter-webmvc-ui`
-- ✅ Git, GitHub e SSH
-
----
-
-## 🧩 Diagrama de Classes
-
-Sistema com entidades `Usuario` e `Tarefa`, onde um usuário pode ter várias tarefas associadas.
+Este projeto foi desenvolvido durante o programa **Santander DEV WEEK**, uma iniciativa em parceria com **DIO.me** para promover o aprendizado e o aperfeiçoamento de habilidades em desenvolvimento de software.
+## Diagrama de Classes (Domínio da API)
 
 ```mermaid
 classDiagram
-  class Usuario {
-    - String nome
-    - String email
-    - List<Tarefa> tarefas
+  class User {
+    -String name
+    -Account account
+    -Feature[] features
+    -Card card
+    -News[] news
   }
 
-  class Tarefa {
-    - String icon
-    - String descricao
-    - Boolean status
-    - Date dtAtribuicao
-    - Date dtFinalizacao
+  class Account {
+    -String number
+    -String agency
+    -Number balance
+    -Number limit
   }
 
-  Usuario "1" *-- "N" Tarefa
-```
-
----
-
-## 🌐 Documentação da API
-
-Acesse a interface interativa do Swagger para testar e explorar os endpoints:
-
-🔗 [http://localhost:8080/swagger-ui/index.html](http://localhost:8080/swagger-ui/index.html)
-
----
-
-## 🔧 Endpoints da API
-
-### 📄 Tarefas
-
-| Método | Endpoint                  | Descrição                |
-|--------|---------------------------|--------------------------|
-| GET    | `/tarefas`                | Listar todas as tarefas  |
-| GET    | `/tarefas/{id}`           | Buscar tarefa por ID     |
-| POST   | `/tarefas`                | Criar nova tarefa        |
-
-#### 🔹 Exemplo de Body - POST `/tarefas`
-
-```json
-{
-  "descricao": "Criar diagramas",
-  "status": true,
-  "dtAtribuicao": "2023-10-21T04:13:36.217Z",
-  "dtFinalizacao": "2023-10-21T04:13:36.217Z"
-}
-```
-
----
-
-### 👤 Usuários
-
-| Método | Endpoint                  | Descrição                |
-|--------|---------------------------|--------------------------|
-| GET    | `/usuarios`               | Listar todos os usuários |
-| GET    | `/usuarios/{id}`          | Buscar usuário por ID    |
-| POST   | `/usuarios`               | Criar novo usuário       |
-
-#### 🔹 Exemplo de Body - POST `/usuarios`
-
-```json
-{
-  "nome": "Maria da Silva",
-  "email": "maria@email.com",
-  "tarefas": [
-    {
-      "descricao": "Estudar Spring",
-      "status": true,
-      "dtAtribuicao": "2023-10-21T04:21:05.083Z",
-      "dtFinalizacao": "2023-10-21T04:21:05.083Z"
-    }
-  ]
-}
-```
-
----
-
-## 📦 Resposta de Exemplo - GET `/tarefas`
-
-```json
-[
-  {
-    "id": 1,
-    "descricao": "Revisar código",
-    "status": true,
-    "dtAtribuicao": "2023-10-21T04:05:06.868Z",
-    "dtFinalizacao": "2023-10-21T04:10:06.868Z"
-  },
-  {
-    "id": 2,
-    "descricao": "Documentar projeto",
-    "status": false,
-    "dtAtribuicao": "2023-10-21T04:11:06.868Z",
-    "dtFinalizacao": null
+  class Feature {
+    -String icon
+    -String description
   }
-]
+
+  class Card {
+    -String number
+    -Number limit
+  }
+
+  class News {
+    -String icon
+    -String description
+  }
+
+  User "1" *-- "1" Account
+  User "1" *-- "N" Feature
+  User "1" *-- "1" Card
+  User "1" *-- "N" News
 ```
+## Aprendizados
+
+Durante o programa, fui capaz de aprimorar minhas habilidades em:
+
+- **Criação e Importação do Projeto**: Aprendizado desde a concepção até a inicialização do projeto.
+- **Versionamento no GitHub**: Boa prática no uso do Git e na manutenção de versões do código.
+- **Abstração Inicial do Domínio no Figma**: Planejamento e organização visual do projeto utilizando o Figma.
+- **Diagrama de Classes com ChatGPT e Mermaid**: Elaboração de diagramas representativos e documentação precisa.
+- **Mapeamento Objeto Relacional (ORM)**: Trabalhando com mapeamento entre objetos e banco de dados.
+- **Implementação da Camada de Negócio**: Desenvolvimento da lógica central do projeto.
+- **Exposição de Endpoints REST e Teste de API**: Design e teste de APIs RESTful.
+- **Provisionamento do PostgreSQL no Railway**: Configuração e gerenciamento de banco de dados na plataforma Railway.
+- **Criação de um Perfil de Produção (PRD)**: Configuração para ambientes de produção.
+- **Deploy da API na Nuvem (Railway)**: Publicação da aplicação na nuvem.
+
+## Tecnologias Utilizadas
+
+- **Figma**
+- **Git e GitHub**
+- **PostgreSQL**
+- **Mermaid.js**
+- **Railway**
+- **REST API**
+
+## Sobre o Programa
+
+O Santander DEV WEEK é um programa intensivo para desenvolvedores, oferecendo conteúdos práticos e teóricos com foco em desenvolvimento Full Stack. Em parceria com **DIO.me**, o programa ajuda a preparar os participantes para desafios do mercado de trabalho, ensinando tanto o desenvolvimento técnico quanto boas práticas de deploy.
+
+## Contato
+
+Criado por [Robson Osbor](https://github.com/robsonosbor).
 
 ---
 
-## ▶️ Como Executar o Projeto
-
-1. Clone o repositório:
-
-```bash
-git clone https://github.com/robsonosbor/Desafio-Santander-Dev-Week-Final.git
-```
-
-2. Acesse a pasta do projeto:
-
-```bash
-cd Desafio-Santander-Dev-Week-Final
-```
-
-3. Execute o projeto com Maven:
-
-```bash
-./mvnw spring-boot:run
-```
-
-4. Acesse o navegador em:
-
-```
-http://localhost:8080
-```
-
----
-
-## 📬 Contato
-
-Desenvolvido por **Robson Osbor**.
-
-- 💼 [LinkedIn](https://www.linkedin.com/in/robsonbatista1975/) <!-- Substitua pelo seu perfil -->
-- ✉️ Email: [E-mail](mailto:email@email.com) <!-- Substitua pelo seu email -->
-
----
-
-## 📄 Licença
-
-Este projeto está licenciado sob a Licença MIT. Consulte o arquivo [LICENSE](./LICENSE) para mais informações.
-
----
+Este README.md serve para documentar o aprendizado e as tecnologias aplicadas no projeto. Se precisar de ajustes ou deseja adicionar algo específico, é só dizer! 😊
